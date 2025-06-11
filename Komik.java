@@ -1,29 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.college.perpustakaanuas;
-
-/**
- *
- * @author gunam
- */
+// Kelas Komik adalah turunan (subclass) dari kelas Koleksi.
 public class Komik extends Koleksi {
 
-    private String ilustrator;
-    private int volume;
+    // Atribut khusus untuk kelas Komik.
+    private String ilustrator; // Nama ilustrator komik.
+    private int volume; // Nomor volume dari seri komik.
 
+    // Konstruktor untuk kelas Komik.
     Komik(String idKoleksi, String judul, int tahunTerbit, String ilustrator, int volume) {
+        // Memanggil konstruktor dari kelas induk (Koleksi) untuk menginisialisasi atribut yang diwariskan.
         super(idKoleksi, judul, tahunTerbit);
+        // Menginisialisasi atribut spesifik untuk Komik.
         this.ilustrator = ilustrator;
         this.volume = volume;
     }
 
+    // Metode publik (getter) untuk mendapatkan nama ilustrator.
     public String getIlustrator() {
-        return this.ilustrator;
+        return this.ilustrator; // Mengembalikan nilai ilustrator.
     }
 
+    // Metode publik (getter) untuk mendapatkan volume komik.
     public int getVolume() {
-        return this.volume;
+        return this.volume; // Mengembalikan nilai volume.
     }
 }

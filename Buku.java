@@ -1,29 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.college.perpustakaanuas;
-
-/**
- *
- * @author gunam
- */
+// Kelas Buku adalah turunan (subclass) dari kelas Koleksi.
 public class Buku extends Koleksi{
 
-    private String penulis;
-    private int jumlahHalaman;
+    // Atribut khusus untuk kelas Buku.
+    private String penulis; // Nama penulis buku.
+    private int jumlahHalaman; // Jumlah halaman buku.
 
+    // Konstruktor untuk kelas Buku.
     Buku(String idKoleksi, String judul, int tahunTerbit, String penulis, int jumlahHalaman) {
-        super(idKoleksi, judul, tahunTerbit);
+        // Memanggil konstruktor dari kelas induk (Koleksi) untuk menginisialisasi atribut yang diwariskan.
+        super(idKoleksi, judul, tahunTerbit); 
+        // Menginisialisasi atribut spesifik untuk Buku.
         this.penulis = penulis;
         this.jumlahHalaman = jumlahHalaman;
     }
     
+    // Metode publik (getter) untuk mendapatkan nama penulis.
     public String getPenulis(){
-        return this.penulis;
+        return this.penulis; // Mengembalikan nilai penulis.
     }
     
+    // Metode publik (getter) untuk mendapatkan jumlah halaman.
     public int getJumlahHalaman(){
-        return this.jumlahHalaman;
+        return this.jumlahHalaman; // Mengembalikan nilai jumlahHalaman.
     }
 }
