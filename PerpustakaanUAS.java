@@ -14,7 +14,7 @@ public class PerpustakaanUAS { // Kelas utama yang berisi logika program.
     }
 
     // Metode untuk menampilkan semua koleksi yang ada di dalam array.
-    public static void tampilBuku(Koleksi[] koleksiArray) {
+    public static void tampilKoleksi(Koleksi[] koleksiArray) {
         if (koleksiArray[0] == null) { // Memeriksa apakah koleksi pertama kosong.
             System.out.println("Koleksi Perpustakaan Kosong !"); // Jika ya, tampilkan pesan ini.
             return; // Keluar dari metode karena tidak ada yang perlu ditampilkan.
@@ -120,9 +120,9 @@ public class PerpustakaanUAS { // Kelas utama yang berisi logika program.
             System.out.println("Maaf, tidak dapat menambah koleksi baru karena perpustakaan sudah penuh !");
             return; // Keluar dari metode jika penuh.
         }
-        
+
         System.out.println("\n--- Tambah Komik Baru ---"); // Header untuk form tambah komik.
-        
+
         // Meminta dan membaca input detail komik dari pengguna.
         System.out.print("Masukkan ID Koleksi: ");
         String idKoleksi = scanner.nextLine();
@@ -141,6 +141,78 @@ public class PerpustakaanUAS { // Kelas utama yang berisi logika program.
         Komik komikBaru = new Komik(idKoleksi, judul, tahunTerbit, ilustrator, volume);
         daftarKoleksi[indexTambah] = komikBaru;
         System.out.println("Komik '" + judul + "' berhasil ditambahkan!"); // Pesan konfirmasi.
+    }
+
+    public static void editJudulKoleksi(Koleksi[] daftarKoleksi, Scanner scanner, int maxPosisi) {
+        // 'repeat' untuk mengontrol perulangan utama (apakah pengguna ingin mengulang operasi).
+        // 'found' adalah penanda (flag) untuk mengecek apakah ID koleksi ditemukan.
+        boolean repeat = true;
+        boolean found;
+        // Variabel sementara untuk menampung input teks dari pengguna.
+        String tempText;
+
+        // Cek jika elemen pertama dalam array adalah null.
+        // Ini adalah cara sederhana untuk memeriksa apakah sudah ada koleksi yang
+        // ditambahkan.
+        if (daftarKoleksi[0] == null) {
+            // Jika kosong, tampilkan pesan dan keluar dari fungsi.
+            System.out.println("Koleksi Perpustakaan Kosong !");
+            return;
+        }
+
+        // Mencetak judul menu untuk fitur ini.
+        System.out.println("\n--- Edit Judul Koleksi ---");
+        // Perulangan utama yang berjalan selama pengguna ingin mengulang operasi
+        // (menjawab 'y').
+        while (repeat) {
+            // Reset penanda 'found' ke false setiap kali perulangan dimulai.
+            // Ini penting agar pencarian di iterasi berikutnya bekerja dengan benar.
+            found = false;
+            // Meminta pengguna memasukkan ID koleksi yang ingin diedit.
+            System.out.print("Cari ID koleksi yang akan di edit: ");
+            // Membaca input ID dari pengguna.
+            String idKoleksi = scanner.nextLine();
+
+            // Melakukan perulangan untuk mencari koleksi dari awal array hingga posisi
+            // terakhir yang terisi ('maxPosisi').
+            for (int i = 0; i < maxPosisi; i++) {
+                // Membandingkan ID yang diinput pengguna dengan ID koleksi di posisi saat ini.
+                if (idKoleksi.equals(daftarKoleksi[i].getIdKoleksi())) {
+                    // Jika ID cocok, tampilkan judul lama dari koleksi tersebut.
+                    System.out.println("\nJudul Koleksi Lama: " + daftarKoleksi[i].getJudul());
+                    // Meminta pengguna memasukkan judul baru.
+                    System.out.print("Masukkan Judul Koleksi Baru: ");
+                    // Membaca input judul baru dari pengguna.
+                    tempText = scanner.nextLine();
+
+                    // Mengubah judul koleksi menggunakan method setter 'setJudulKoleksi'.
+                    daftarKoleksi[i].setJudulKoleksi(tempText);
+                    // Memberi konfirmasi bahwa judul telah berhasil diubah.
+                    System.out.println("\nJudul Koleksi telah diubah !");
+                    // Mengubah penanda 'found' menjadi true karena ID telah ditemukan.
+                    found = true;
+                    // Keluar dari perulangan 'for' karena data sudah ditemukan dan tidak perlu
+                    // mencari lagi.
+                    break;
+                }
+            }
+
+            // Setelah perulangan 'for' selesai, cek nilai dari penanda 'found'.
+            if (!found) {
+                // Jika 'found' masih false, berarti ID tidak ditemukan dalam perulangan.
+                System.out.println("ID Koleksi tidak ditemukan !");
+            }
+
+            // Menanyakan kepada pengguna apakah ingin mengulangi operasi edit.
+            System.out.println("Ulangi Operasi Edit Judul ? (y/n)");
+            // Menampilkan prompt input.
+            System.out.print(">> ");
+            // Membaca jawaban pengguna.
+            tempText = scanner.nextLine();
+            // Mengatur nilai 'repeat' menjadi true jika pengguna mengetik 'y' atau 'Y', dan
+            // false untuk input lainnya.
+            repeat = tempText.equalsIgnoreCase("y");
+        }
     }
 
     // Metode utama, titik masuk program.
@@ -165,14 +237,15 @@ public class PerpustakaanUAS { // Kelas utama yang berisi logika program.
 
             switch (pilihanMenu) { // Struktur kontrol untuk memilih aksi berdasarkan pilihan menu.
                 case 1: // Jika pilihan adalah 1
-                    tampilBuku(bukuPerpustakaan); // Panggil metode untuk menampilkan koleksi.
+                    tampilKoleksi(bukuPerpustakaan); // Panggil metode untuk menampilkan koleksi.
                     break; // Keluar dari switch.
                 case 2: // Jika pilihan adalah 2
                     tambahBuku(bukuPerpustakaan, input, posisi, jumlahBuku); // Panggil metode untuk menambah buku.
                     posisi++; // Naikkan indeks posisi untuk item berikutnya.
                     break; // Keluar dari switch.
                 case 3: // Jika pilihan adalah 3
-                    tambahMajalah(bukuPerpustakaan, input, posisi, jumlahBuku); // Panggil metode untuk menambah majalah.
+                    tambahMajalah(bukuPerpustakaan, input, posisi, jumlahBuku); // Panggil metode untuk menambah
+                                                                                // majalah.
                     posisi++; // Naikkan indeks posisi.
                     break; // Keluar dari switch.
                 case 4: // Jika pilihan adalah 4
