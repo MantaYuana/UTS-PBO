@@ -1,3 +1,4 @@
+package UTSPBO;
 import java.util.Scanner; // Mengimpor kelas Scanner untuk membaca input dari pengguna.
 
 public class PerpustakaanUAS { // Kelas utama yang berisi logika program.

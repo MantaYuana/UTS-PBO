@@ -1,3 +1,4 @@
+package UTSPBO;
 // Kelas Komik adalah turunan (subclass) dari kelas Koleksi.
 public class Komik extends Koleksi {
 

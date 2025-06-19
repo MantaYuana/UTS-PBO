@@ -1,3 +1,4 @@
+package UTSPBO;
 // Kelas Buku adalah turunan (subclass) dari kelas Koleksi.
 public class Buku extends Koleksi{
 

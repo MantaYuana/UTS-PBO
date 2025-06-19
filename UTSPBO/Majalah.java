@@ -1,3 +1,4 @@
+package UTSPBO;
 // Kelas Majalah adalah turunan (subclass) dari kelas Koleksi.
 public class Majalah extends Koleksi {
 

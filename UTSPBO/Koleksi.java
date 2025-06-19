@@ -1,3 +1,4 @@
+package UTSPBO;
 // Ini adalah kelas induk (superclass) untuk semua item di perpustakaan.
 public class Koleksi {
 

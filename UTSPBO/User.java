@@ -1,3 +1,4 @@
+package UTSPBO;
 // Kelas sederhana untuk merepresentasikan data pengguna.
 public class User {
 
