@@ -27,8 +27,12 @@ public class PerpustakaanUAS implements ManageKoleksi {
 
     @Override
     public void addKoleksi(Koleksi koleksi) {
-        koleksiList.add(koleksi);
-        System.out.println("Koleksi '" + koleksi.getJudul() + "' berhasil diaddkan!");
+        try {
+            koleksiList.add(koleksi);
+            System.out.println("Koleksi '" + koleksi.getJudul() + "' berhasil ditambahkan!");
+        } catch (Exception e) {
+            System.out.println("Error saat menambahkan koleksi: " + e.getMessage());
+        }
     }
 
     @Override
